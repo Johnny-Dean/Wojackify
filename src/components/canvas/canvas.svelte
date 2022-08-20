@@ -16,6 +16,7 @@
 	} from './canvasHelper';
 
 	let canvas: HTMLCanvasElement;
+	let downloadLink: HTMLAnchorElement;
 	export let user: UserObjectPublic;
 	export let topSongs: UsersTopTracksResponse;
 	export let topArtists: UsersTopArtistsResponse;
@@ -29,9 +30,13 @@
 	const mostObscureSong = getMostObscureSong(topSongs);
 	const randomGenre = getRandomGenre(topArtists).toLowerCase();
 
+	const generateDownloadLink = () => {
+		downloadLink.href = canvas.toDataURL('image/png');
+	};
 	const drawImage = () => {
 		let context = canvas.getContext('2d');
 		const image = new Image();
+
 		image.addEventListener(
 			'load',
 			() => {
@@ -76,22 +81,15 @@
 			false
 		);
 		image.src = wojackImage;
-	};
-
-	const saveFile = () => {
-		var downloadLink = document.createElement('a');
-		downloadLink.href = canvas.toDataURL('image/png');
-		downloadLink.download = 'myImage.png';
-
-		document.body.appendChild(downloadLink);
-		downloadLink.click();
-		document.body.removeChild(downloadLink);
+		generateDownloadLink();
 	};
 
 	onMount(() => drawImage());
 </script>
 
-<canvas on:click={saveFile} bind:this={canvas} width={673} height={671} />
+<a bind:this={downloadLink} download>
+	<canvas bind:this={canvas} width={673} height={671} />
+</a>
 
 <style>
 	canvas {
