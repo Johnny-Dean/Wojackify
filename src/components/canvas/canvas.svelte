@@ -77,12 +77,26 @@
 		);
 		image.src = wojackImage;
 	};
+
+	const saveFile = () => {
+		var downloadLink = document.createElement('a');
+		downloadLink.href = canvas.toDataURL('image/png');
+		downloadLink.download = 'myImage.png';
+
+		document.body.appendChild(downloadLink);
+		downloadLink.click();
+		document.body.removeChild(downloadLink);
+	};
+
 	onMount(() => drawImage());
 </script>
 
-<canvas bind:this={canvas} width={673} height={671} />
+<canvas on:click={saveFile} bind:this={canvas} width={673} height={671} />
 
 <style>
+	canvas {
+		cursor: pointer;
+	}
 	@media screen and (max-width: 600px) {
 		canvas {
 			height: 375px;

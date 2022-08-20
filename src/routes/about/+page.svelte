@@ -10,9 +10,6 @@
 			title="How does this work?"
 			body="This website interfaces with Spotify / Apple Music's API to get your listening history. The data returned lets us find interesting information that we generate into the image."
 		/>
-		<Faq title="test" body="test" />
-		<Faq title="test" body="test" />
-		<Faq title="test" body="test" />
 	</div>
 </div>
 
