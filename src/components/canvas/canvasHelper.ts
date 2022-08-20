@@ -49,6 +49,5 @@ export const getTopArtistMostPopularSong = async (
 	const artist = getRandomArtist(topArtists);
 	const topTracks = await getArtistTopTracks(parseId(artist.uri), accessToken);
 	const randomRange = Math.floor(Math.random() * 3);
-	console.log(artist, topTracks);
 	return [artist.name.toLowerCase(), topTracks.tracks[randomRange].name.toLowerCase()];
 };
