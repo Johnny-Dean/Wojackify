@@ -5,6 +5,7 @@
 	import Canvas from '/src/components/canvas/canvas.svelte';
 	import { getTopArtistMostPopularSong } from '/src/components/canvas/canvasHelper';
 	import Nav from '/src/components/nav/nav.svelte';
+	import wojackImage from '../../img/wojack.jpg';
 	import type {
 		UserObjectPublic,
 		TrackObjectFull,
@@ -31,7 +32,7 @@
 	{#if topArtistTopTrack}
 		<Canvas {user} {topSongs} {topArtists} {topArtistTopTrack} />
 	{:else}
-		<img src="/src/img/wojack.jpg" alt="wojack" />
+		<img src={wojackImage} alt="wojack" />
 	{/if}
 	<div class="card mt-5 bg-base-300">
 		<div class="card-body flex flex-col content-center">
