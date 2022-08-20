@@ -31,7 +31,7 @@
 	{#if topArtistTopTrack}
 		<Canvas {user} {topSongs} {topArtists} {topArtistTopTrack} />
 	{:else}
-		<img src="src/img/wojack.jpg" alt="wojack" />
+		<img src="/src/img/wojack.jpg" alt="wojack" />
 	{/if}
 	<div class="card mt-5 bg-base-300">
 		<div class="card-body flex flex-col content-center">

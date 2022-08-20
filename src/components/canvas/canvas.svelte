@@ -36,7 +36,7 @@
 			'load',
 			() => {
 				context!.drawImage(image, 0, 0);
-				context!.font = 'normal 16px Georgia';
+				context!.font = 'normal 16px serif';
 				context?.fillText('this party sucks', 170, 20);
 				context?.fillText(
 					`they don't know i have ${user.followers.total} ${
@@ -54,7 +54,7 @@
 				context?.fillText(`that guy told me he listens to`, 210, 232);
 				context?.fillText(`${topArtistTopTrack[0]}`, 210, 248);
 
-				context!.font = 'normal 16px Georgia green';
+				context!.font = 'normal 16px serif green';
 				context!.fillStyle = 'green';
 				context?.fillText(`> tfw no ${randomAristBae} or ${randomGenreBae} bae`, 215, 40);
 				context?.fillText(
@@ -64,7 +64,7 @@
 				);
 				context?.fillText(`> can't show i like it`, 215, 156);
 				context?.fillText(`> he only knew ${topArtistTopTrack[1]}`, 210, 264);
-				context!.font = 'normal 15px cursive';
+				context!.font = 'normal 15px sans-serif';
 				context!.fillStyle = 'red';
 				context?.fillText(`who invited ${user.display_name}?`, 473, 175);
 				context?.fillText(`why is he standing like that`, 110, 463);
