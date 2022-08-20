@@ -15,8 +15,7 @@
 		getRandomGenre
 	} from './canvasHelper';
 
-	let canvas: HTMLCanvasElement;
-	let downloadLink: HTMLAnchorElement;
+	let downloadableImage: any;
 	export let user: UserObjectPublic;
 	export let topSongs: UsersTopTracksResponse;
 	export let topArtists: UsersTopArtistsResponse;
@@ -30,10 +29,10 @@
 	const mostObscureSong = getMostObscureSong(topSongs);
 	const randomGenre = getRandomGenre(topArtists).toLowerCase();
 
-	const generateDownloadLink = () => {
-		downloadLink.href = canvas.toDataURL('image/png');
-	};
 	const drawImage = () => {
+		let canvas: HTMLCanvasElement = document.createElement('canvas');
+		canvas.height = 673;
+		canvas.width = 671;
 		let context = canvas.getContext('2d');
 		const image = new Image();
 
@@ -77,32 +76,31 @@
 				context!.font = 'normal 15px Tahoma ';
 				context!.fillStyle = 'blue';
 				context?.fillText(`generated with wojackify.me`, 250, 665);
+
+				downloadableImage.src = canvas.toDataURL();
 			},
 			false
 		);
 		image.src = wojackImage;
-		generateDownloadLink();
 	};
 
 	onMount(() => drawImage());
 </script>
 
-<a bind:this={downloadLink} download>
-	<canvas bind:this={canvas} width={673} height={671} />
-</a>
+<img bind:this={downloadableImage} alt="peepeepoopoo" />
 
 <style>
 	canvas {
 		cursor: pointer;
 	}
 	@media screen and (max-width: 600px) {
-		canvas {
+		img {
 			height: 375px;
 			width: 375px;
 		}
 	}
 	@media screen and (min-width: 600px) {
-		canvas {
+		img {
 			height: 600px;
 			width: 600px;
 		}
