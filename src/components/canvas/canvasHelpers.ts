@@ -1,5 +1,6 @@
 import { getArtistTopTracks } from '../../services/api.ts';
 import type { TrackObjectFull, ArtistObjectFull } from 'spotify-api';
+import { compute_rest_props } from 'svelte/internal';
 
 const randomNumberGenerator = (length: number): number => {
 	return Math.floor(Math.random() * length);
@@ -50,8 +51,8 @@ export const getTopArtistMostPopularSong = async (
 	const artist = getRandomArtist(topArtists);
 	let topTracks = await getArtistTopTracks(parseId(artist.uri), accessToken);
 	topTracks = topTracks.tracks;
-	const topTrack = topTracks[0].name;
-	return [artist.name, topTrack];
+	const topTrack = topTracks[0];
+	return [artist, topTrack];
 };
 
 export const filterSongOut = (

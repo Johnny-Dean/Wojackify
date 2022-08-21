@@ -19,8 +19,10 @@
 	export let topSongs: Array<TrackObjectFull>;
 	export let topArtists: Array<ArtistObjectFull>;
 	export let topArtistTopTrack: TrackObjectFull;
-	const randomSong = getRandomSong(topSongs);
+	topSongs = filterSongOut(topArtistTopTrack[1], topSongs);
+	topArtists = filterArtistOut(topArtistTopTrack[1], topArtists);
 
+	const randomSong = getRandomSong(topSongs);
 	topSongs = filterSongOut(randomSong, topSongs);
 	topArtists = filterArtistOut(randomSong, topArtists);
 
@@ -71,7 +73,7 @@
 				context?.fillText(`haven't heard any ${randomGenre.toLowerCase()}`, 213, 195);
 				context?.fillText('my feet hurt', 210, 215);
 				context?.fillText(`that guy told me he listens to`, 210, 232);
-				context?.fillText(`${topArtistTopTrack[0].toLowerCase()}`, 210, 248);
+				context?.fillText(`${topArtistTopTrack[0].name.toLowerCase()}`, 210, 248);
 
 				context!.font = 'normal 16px serif green';
 				context!.fillStyle = 'green';
@@ -86,7 +88,7 @@
 					120
 				);
 				context?.fillText(`> can't show i like it`, 215, 156);
-				context?.fillText(`> he only knew ${topArtistTopTrack[1].toLowerCase()}`, 210, 266);
+				context?.fillText(`> he only knew ${topArtistTopTrack[1].name.toLowerCase()}`, 210, 266);
 				context!.font = 'normal 15px sans-serif';
 				context!.fillStyle = 'red';
 				context?.fillText(`who invited ${user.display_name}?`, 485, 175);
