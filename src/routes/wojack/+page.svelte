@@ -3,8 +3,9 @@
 	import { GetAccessToken } from '/src/services/auth.ts';
 	import { getUserProfile, getUserTop } from '/src/services/api.ts';
 	import Canvas from '/src/components/canvas/canvas.svelte';
-	import { getTopArtistMostPopularSong } from '/src/components/canvas/canvasHelper';
+	import { getTopArtistMostPopularSong } from '/src/components/canvas/canvasHelpers';
 	import Nav from '/src/components/nav/nav.svelte';
+	import DownloadInstructions from '/src/components/download-info/download-info.svelte';
 	import wojackImage from '../../img/wojack.jpg';
 	import type {
 		UserObjectPublic,
@@ -19,10 +20,12 @@
 	let topArtistTopTrack: TrackObjectFull;
 
 	onMount(async () => {
-		let accessToken = GetAccessToken(); // Don't need to store this in a cookie or localStorage because it's such a quick process. Safer to just store in memory.
+		const accessToken = GetAccessToken(); // Don't need to store this in a cookie or localStorage because it's such a quick process. Safer to just store in memory.
 		user = await getUserProfile(accessToken);
 		topSongs = await getUserTop('tracks', accessToken);
+		topSongs = topSongs.items;
 		topArtists = await getUserTop('artists', accessToken);
+		topArtists = topArtists.items;
 		topArtistTopTrack = await getTopArtistMostPopularSong(topArtists, accessToken);
 	});
 </script>
@@ -34,16 +37,7 @@
 	{:else}
 		<img src={wojackImage} alt="wojack" />
 	{/if}
-	<div class="card mt-5 bg-base-300">
-		<div class="card-body flex flex-col content-center">
-			<h1 class="card-title justify-center"><a>Download</a></h1>
-			<div class="text-center">
-				<p><b>Mobile:</b> Press and hold</p>
-				<p><b>Desktop:</b> Right click -> save image as</p>
-				<p><i>If you don't see any text, try logging in again</i></p>
-			</div>
-		</div>
-	</div>
+	<DownloadInstructions />
 </div>
 
 <style>

@@ -8,8 +8,23 @@
 	<div class="faq-container text-white">
 		<Faq
 			title="How does this work?"
-			body="This website interfaces with Spotify's API to get your listening history. The data returned lets us find interesting information that we generate into the image."
+			body="This website interfaces with Spotify's API to get your listening history which is then placed over an image."
 		/>
+		<Faq
+			title="How does this REALLY work?"
+			body="This website is build with SvelteKit and DaisyUI / Tailwind. I used an HTML canvas to set and draw text (retrieved from the Spotify API) over a background. The canvas then gets converted to an image avaliable to download."
+		/>
+
+		<div tabindex="0" class="collapse collapse-arrow  bg-base-300 box rounded-box">
+			<div class="collapse-title text-xl font-medium flex"><p>How did you think of this?</p></div>
+			<div class="collapse-content">
+				<p>
+					I always thought the meme was funny and wanted to see if I could make something like <a
+						href="https://receiptify.herokuapp.com/">recieptify.com</a
+					>.
+				</p>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -25,5 +40,8 @@
 		display: flex;
 		flex-direction: column;
 		max-width: 40em;
+	}
+	a {
+		color: lightblue;
 	}
 </style>
