@@ -12,18 +12,27 @@
 		getRandomSong,
 		getMostPopularSong,
 		getRandomArtist,
-		getRandomGenre
+		getRandomGenre,
+		isArtistOnSong
 	} from './canvasHelper';
 
-	let downloadableImage: any;
+	let downloadableImage: HTMLImageElement;
 	export let user: UserObjectPublic;
 	export let topSongs: UsersTopTracksResponse;
 	export let topArtists: UsersTopArtistsResponse;
 	export let topArtistTopTrack: TrackObjectFull;
 
-	const randomSong = getRandomSong(topSongs).name.toLowerCase();
-	topSongs.items = topSongs.items.filter((song: TrackObjectFull) => song.name !== randomSong.name); // Filter out random song so tha tit doesnt appear again
-	const mostPopularSong = getMostPopularSong(topSongs).name.toLowerCase();
+	const randomSong = getRandomSong(topSongs);
+	// Filter out the random song and artist used so that it doesn't appear again and make the meme not make sense
+	topSongs.items = topSongs.items.filter((song: TrackObjectFull) => song.name !== randomSong.name);
+
+	topArtists.items = topArtists.items.filter((artist: any) => !isArtistOnSong(artist, randomSong));
+
+	const mostPopularSong = getMostPopularSong(topSongs);
+	topSongs.items = topSongs.items.filter(
+		(song: TrackObjectFull) => song.name !== mostPopularSong.name
+	);
+	topArtists.items = topArtists.items.filter((artist: any) => !isArtistOnSong(artist, randomSong));
 	const randomAristBae = getRandomArtist(topArtists).name.toLowerCase();
 	const randomGenreBae = getRandomGenre(topArtists).toLowerCase();
 	const mostObscureSong = getMostObscureSong(topSongs);
@@ -50,8 +59,16 @@
 					60
 				);
 				context?.fillText(`did she just smile at me?`, 205, 80);
-				context?.fillText(`i wish i was at home listening to ${randomSong}`, 200, 100);
-				context?.fillText(`they're unironically playing ${mostPopularSong}`, 205, 140);
+				context?.fillText(
+					`i wish i was at home listening to ${randomSong.name.toLowerCase()}`,
+					200,
+					100
+				);
+				context?.fillText(
+					`they're unironically playing ${mostPopularSong.name.toLowerCase()}`,
+					205,
+					140
+				);
 				context?.fillText(`who's djing?`, 215, 175);
 				context?.fillText(`haven't heard any ${randomGenre}`, 213, 195);
 				context?.fillText('my feet hurt', 210, 215);
@@ -70,7 +87,7 @@
 				context?.fillText(`> he only knew ${topArtistTopTrack[1]}`, 210, 264);
 				context!.font = 'normal 15px sans-serif';
 				context!.fillStyle = 'red';
-				context?.fillText(`who invited ${user.display_name}?`, 473, 175);
+				context?.fillText(`who invited ${user.display_name}?`, 485, 175);
 				context?.fillText(`why is he standing like that`, 110, 463);
 
 				context!.font = 'normal 15px Tahoma ';

@@ -6,6 +6,7 @@ import type {
 	ArtistTopTracksResponse,
 	ArtistObjectFull
 } from 'spotify-api';
+
 export const getRandomSong = (topSongs: any) => {
 	const randomRange = Math.floor(Math.random() * topSongs.items.length);
 	return topSongs.items[randomRange];
@@ -50,4 +51,13 @@ export const getTopArtistMostPopularSong = async (
 	const topTracks = await getArtistTopTracks(parseId(artist.uri), accessToken);
 	const randomRange = Math.floor(Math.random() * 3);
 	return [artist.name.toLowerCase(), topTracks.tracks[randomRange].name.toLowerCase()];
+};
+
+export const isArtistOnSong = (artist: any, track: any) => {
+	for (let i = 0; i < track.artists.length; i++) {
+		if (artist.name === track.artists[i].name) {
+			return true;
+		}
+	}
+	return false;
 };
