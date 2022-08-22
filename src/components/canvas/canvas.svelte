@@ -60,12 +60,12 @@
 				);
 				context?.fillText(`did she just smile at me?`, 205, 80);
 				context?.fillText(
-					`i wish i was at home listening to ${randomSong.name.toLowerCase()}`,
+					`i wish i was at home listening to "${randomSong.name.toLowerCase()}"`,
 					200,
 					100
 				);
 				context?.fillText(
-					`they're unironically playing ${mostPopularSong.name.toLowerCase()}`,
+					`they're unironically playing "${mostPopularSong.name.toLowerCase()}"`,
 					205,
 					140
 				);
@@ -83,12 +83,12 @@
 					40
 				);
 				context?.fillText(
-					`> not knowing ${mostObscureSong.name.toLowerCase()} by ${mostObscureSong.artists[0].name.toLowerCase()} in ${new Date().getFullYear()}`,
+					`> not knowing "${mostObscureSong.name.toLowerCase()}" by ${mostObscureSong.artists[0].name.toLowerCase()} in ${new Date().getFullYear()}`,
 					215,
 					120
 				);
 				context?.fillText(`> can't show i like it`, 215, 156);
-				context?.fillText(`> he only knew ${topArtistTopTrack[1].name.toLowerCase()}`, 210, 266);
+				context?.fillText(`> he only knew "${topArtistTopTrack[1].name.toLowerCase()}"`, 210, 266);
 				context!.font = 'normal 15px sans-serif';
 				context!.fillStyle = 'red';
 				context?.fillText(`who invited ${user.display_name}?`, 485, 175);
