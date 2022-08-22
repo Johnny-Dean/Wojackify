@@ -10,8 +10,11 @@
 			<h1 class="card-title  justify-center">Welcome to Wojackify!</h1>
 			<p class="text-center"><i>None of your login credentials will be saved!</i></p>
 			<div class="card-actions flex flex-col content-center mt-5">
-				<button on:click={requestSpotifyAuth} class="btn btn-lg w-48 spotify-btn text-white"
-					>Spotify</button
+				<button
+					on:click={requestSpotifyAuth}
+					data-goatcounter-click="spotify-btn"
+					data-goatcounter-title="spotify-auth"
+					class="btn btn-lg w-48 spotify-btn text-white">Spotify</button
 				>
 			</div>
 		</div>
