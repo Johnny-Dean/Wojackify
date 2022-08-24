@@ -1,12 +1,13 @@
 <script lang="ts">
+	import wojackImage from '../../img/wojack.jpg';
 	import { onMount } from 'svelte';
 	import { GetAccessToken } from '/src/services/auth.ts';
 	import { getUserProfile, getUserTop } from '/src/services/api.ts';
-	import Canvas from '/src/components/canvas/canvas.svelte';
 	import { getTopArtistMostPopularSong } from '/src/components/canvas/canvasUtil.ts';
-	import Nav from '/src/components/nav/nav.svelte';
 	import DownloadInstructions from '/src/components/download-info/download-info.svelte';
-	import wojackImage from '../../img/wojack.jpg';
+	import Canvas from '/src/components/canvas/canvas.svelte';
+	import Nav from '/src/components/nav/nav.svelte';
+	import TimeRange from '/src/components/time-range/timeRange.svelte';
 	import type {
 		UserObjectPublic,
 		TrackObjectFull,
@@ -19,28 +20,34 @@
 	let topArtists: UsersTopArtistsResponse;
 	let topArtistTopTrack: TrackObjectFull;
 
-	onMount(async () => {
+	async function fetchData(timeRange = 'short_term') {
 		const accessToken = GetAccessToken(); // Don't need to store this in a cookie or localStorage because it's such a quick process. Safer to just store in memory.
 		user = await getUserProfile(accessToken);
-		topSongs = await getUserTop('tracks', accessToken);
+		topSongs = await getUserTop('tracks', timeRange, accessToken);
 		topSongs = topSongs.items;
-		topArtists = await getUserTop('artists', accessToken);
+		topArtists = await getUserTop('artists', timeRange, accessToken);
 		topArtists = topArtists.items;
 		topArtistTopTrack = await getTopArtistMostPopularSong(topArtists, accessToken);
+	}
+
+	function handleTimeRangeChange(event: any) {
+		fetchData(event.detail.newTimeRange);
+	}
+
+	onMount(async () => {
+		fetchData();
 	});
 </script>
-
-<svelte:head>
-	<title>Wojackify - Generated</title>
-	<html lang="en" />
-</svelte:head>
 
 <Nav />
 <div class="center_container">
 	<div class="card-compact bg-base-300">
 		<div class="card-body flex flex-col content-center">
+			<TimeRange on:timeRangeChange={handleTimeRangeChange} />
 			{#if topArtistTopTrack}
-				<Canvas {user} {topSongs} {topArtists} {topArtistTopTrack} />
+				{#key topArtistTopTrack}
+					<Canvas {user} {topSongs} {topArtists} {topArtistTopTrack} />
+				{/key}
 			{:else}
 				<img src={wojackImage} alt="wojack" />
 			{/if}
@@ -48,6 +55,11 @@
 	</div>
 	<DownloadInstructions />
 </div>
+
+<svelte:head>
+	<title>Wojackify - Generated</title>
+	<html lang="en" />
+</svelte:head>
 
 <style>
 	.center_container {

@@ -11,13 +11,16 @@ export const getUserProfile = async (accessToken: string) => {
 	}
 };
 
-export const getUserTop = async (type: string, accessToken: string) => {
+export const getUserTop = async (type: string, timeRange: string, accessToken: string) => {
 	try {
-		const response = await fetch(`https://api.spotify.com/v1/me/top/${type}`, {
-			headers: {
-				Authorization: `Bearer ${accessToken}`
+		const response = await fetch(
+			`https://api.spotify.com/v1/me/top/${type}/?time_range=${timeRange}`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`
+				}
 			}
-		});
+		);
 		return response.json();
 	} catch (error) {
 		console.error(error);
