@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import wojackImage from '../../img/wojack.jpg';
 	import {
+		getInsult,
 		getGenres,
 		getMostObscureSong,
 		getRandomSong,
@@ -12,7 +13,7 @@
 		filterArtistOut,
 		filterSongOut,
 		filterGenreOut
-	} from './canvasHelpers.ts';
+	} from './canvasUtil.ts';
 
 	let downloadableImage: HTMLImageElement;
 	export let user: UserObjectPublic;
@@ -92,7 +93,7 @@
 				context!.font = 'normal 15px sans-serif';
 				context!.fillStyle = 'red';
 				context?.fillText(`who invited ${user.display_name}?`, 485, 175);
-				context?.fillText(`why is he standing like that`, 110, 463);
+				context?.fillText(`${getInsult()}`, 110, 463);
 
 				context!.font = 'normal 15px Tahoma ';
 				context!.fillStyle = 'blue';

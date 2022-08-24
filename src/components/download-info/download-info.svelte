@@ -4,6 +4,7 @@
 		<div class="text-center">
 			<p><b>Mobile:</b> Press and hold</p>
 			<p><b>Desktop:</b> Right click -> save image as</p>
+			<p><i>Refresh the page to generate a different image</i></p>
 			<p><i>If you don't see any text, try logging in again</i></p>
 		</div>
 	</div>

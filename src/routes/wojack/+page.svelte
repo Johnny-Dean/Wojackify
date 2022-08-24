@@ -3,7 +3,7 @@
 	import { GetAccessToken } from '/src/services/auth.ts';
 	import { getUserProfile, getUserTop } from '/src/services/api.ts';
 	import Canvas from '/src/components/canvas/canvas.svelte';
-	import { getTopArtistMostPopularSong } from '/src/components/canvas/canvasHelpers';
+	import { getTopArtistMostPopularSong } from '/src/components/canvas/canvasUtil.ts';
 	import Nav from '/src/components/nav/nav.svelte';
 	import DownloadInstructions from '/src/components/download-info/download-info.svelte';
 	import wojackImage from '../../img/wojack.jpg';
@@ -32,11 +32,15 @@
 
 <Nav />
 <div class="center_container">
-	{#if topArtistTopTrack}
-		<Canvas {user} {topSongs} {topArtists} {topArtistTopTrack} />
-	{:else}
-		<img src={wojackImage} alt="wojack" />
-	{/if}
+	<div class="card-compact bg-base-300">
+		<div class="card-body flex flex-col content-center">
+			{#if topArtistTopTrack}
+				<Canvas {user} {topSongs} {topArtists} {topArtistTopTrack} />
+			{:else}
+				<img src={wojackImage} alt="wojack" />
+			{/if}
+		</div>
+	</div>
 	<DownloadInstructions />
 </div>
 

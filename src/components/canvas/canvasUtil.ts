@@ -1,9 +1,19 @@
 import { getArtistTopTracks } from '../../services/api.ts';
 import type { TrackObjectFull, ArtistObjectFull } from 'spotify-api';
-import { compute_rest_props } from 'svelte/internal';
 
 const randomNumberGenerator = (length: number): number => {
 	return Math.floor(Math.random() * length);
+};
+
+export const getInsult = (): string => {
+	const insults = [
+		'why is he standing like that',
+		"he thinks he's anthony fantano",
+		"i hate him so much i'm shaking",
+		'bro smells kind of funny'
+	];
+	const randomRange = randomNumberGenerator(insults.length);
+	return insults[randomRange];
 };
 
 export const getRandomSong = (topSongs: Array<TrackObjectFull>): TrackObjectFull => {
@@ -51,7 +61,7 @@ export const getTopArtistMostPopularSong = async (
 	const artist = getRandomArtist(topArtists);
 	let topTracks = await getArtistTopTracks(parseId(artist.uri), accessToken);
 	topTracks = topTracks.tracks;
-	const topTrack = topTracks[0];
+	const topTrack = getMostPopularSong(topTracks);
 	return [artist, topTrack];
 };
 

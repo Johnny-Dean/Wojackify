@@ -7,6 +7,10 @@
 <div class="center_container">
 	<div class="faq-container text-white">
 		<Faq
+			title="Is this safe to use?"
+			body="Yes! Spotify offers a pretty easy way to securely authorize a user."
+		/>
+		<Faq
 			title="How does this work?"
 			body="This website interfaces with Spotify's API to get your listening history which is then placed over an image."
 		/>

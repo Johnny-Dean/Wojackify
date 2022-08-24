@@ -8,7 +8,6 @@
 	<div class="card w-80 bg-base-300 text-white mb-20">
 		<div class="card-body">
 			<h1 class="card-title  justify-center">Welcome to Wojackify!</h1>
-			<p class="text-center"><i>None of your login credentials will be saved!</i></p>
 			<div class="card-actions flex flex-col content-center mt-5">
 				<button
 					on:click={requestSpotifyAuth}

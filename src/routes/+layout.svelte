@@ -1,6 +1,5 @@
 <script>
 	import '../app.css';
-	import Anayltics from '../lib/goatCounter.svelte';
 </script>
 
 <svelte:head>
