@@ -3,6 +3,11 @@
 	import { requestSpotifyAuth } from '/src/services/auth.ts';
 </script>
 
+<svelte:head>
+	<title>Wojackify - Login</title>
+	<html lang="en" />
+</svelte:head>
+
 <Nav />
 <div class="center">
 	<div class="card w-80 bg-base-300 text-white mb-20">

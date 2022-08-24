@@ -30,6 +30,11 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Wojackify - Generated</title>
+	<html lang="en" />
+</svelte:head>
+
 <Nav />
 <div class="center_container">
 	<div class="card-compact bg-base-300">
