@@ -19,7 +19,7 @@
 			type="radio"
 			name="time"
 			value="short_term"
-			class="radio checked:bg-red-500"
+			class="radio radio-sm checked:bg-success"
 		/>
 	</label>
 
@@ -30,7 +30,7 @@
 			type="radio"
 			name="time"
 			value="medium_term"
-			class="radio checked:bg-blue-500"
+			class="radio radio-sm checked:bg-success"
 		/>
 	</label>
 
@@ -41,7 +41,7 @@
 			type="radio"
 			name="time"
 			value="long_term"
-			class="radio checked:bg-blue-500"
+			class="radio radio-sm checked:bg-success"
 		/>
 	</label>
 </div>
