@@ -40,36 +40,26 @@
 </script>
 
 <Nav />
-<div class="center_container">
-	<div class="card-compact bg-base-300">
-		<div class="card-body flex flex-col content-center">
-			<TimeRange on:timeRangeChange={handleTimeRangeChange} />
-			{#if topArtistTopTrack}
-				{#key topArtistTopTrack}
-					<Canvas {user} {topSongs} {topArtists} {topArtistTopTrack} />
-				{/key}
-			{:else}
-				<img src={wojackImage} alt="wojack" />
-			{/if}
-		</div>
+<div class="flex flex-col content-center mt-2">
+	<div class="flex flex-col content-center items-center gap-1">
+		<TimeRange on:timeRangeChange={handleTimeRangeChange} />
+		{#if topArtistTopTrack}
+			{#key topArtistTopTrack}
+				<Canvas {user} {topSongs} {topArtists} {topArtistTopTrack} />
+			{/key}
+		{:else}
+			<img src={wojackImage} alt="wojack" />
+		{/if}
 	</div>
-	<DownloadInstructions />
 </div>
 
 <svelte:head>
 	<title>Wojackify - Generated</title>
+	<meta name="spotify" content="app-id=324684580" />
 	<html lang="en" />
 </svelte:head>
 
 <style>
-	.center_container {
-		height: 90vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		text-align: center;
-	}
 	@media screen and (max-width: 600px) {
 		img {
 			height: 375px;
