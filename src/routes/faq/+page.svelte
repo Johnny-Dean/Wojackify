@@ -29,6 +29,7 @@
 				</p>
 			</div>
 		</div>
+		<Faq title="Contact Info" body="Email: wojackify@gmail.com" />
 	</div>
 </div>
 
