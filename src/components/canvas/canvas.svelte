@@ -33,8 +33,11 @@
 	topSongs = filterSongOut(mostPopularSong, topSongs);
 	topArtists = filterArtistOut(mostPopularSong, topArtists);
 
-	const randomArtistBae = getRandomArtist(topArtists);
 	const mostObscureSong = getMostObscureSong(topSongs);
+	topSongs = filterSongOut(mostObscureSong, topSongs);
+	topArtists = filterArtistOut(mostObscureSong, topArtists);
+
+	const randomArtistBae = getRandomArtist(topArtists);
 
 	let genres: Array<string> = getGenres(topArtists);
 	const randomGenreBae = getRandomGenre(genres);
