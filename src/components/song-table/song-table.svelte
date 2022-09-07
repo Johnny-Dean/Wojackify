@@ -35,7 +35,7 @@
 			<td>
 				<a href={getExternalLink(mostPopularSong.artists[0])}>{mostPopularSong.artists[0].name}</a>
 			</td>
-			<td>{mostPopularSong.album.name}</td>
+			<td><a href={getExternalLink(mostPopularSong.album)}>{mostPopularSong.album.name}</a></td>
 			<td>Most Popular Song</td>
 		</tr>
 		<tr>
