@@ -81,6 +81,7 @@
 	table {
 		display: block;
 		max-height: 15em;
+		max-width: 30em;
 		overflow: auto;
 		border-spacing: 1em;
 		border-collapse: separate;

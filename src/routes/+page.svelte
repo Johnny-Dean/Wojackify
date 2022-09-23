@@ -33,31 +33,16 @@
 		align-items: center;
 		height: 90vh;
 	}
-	.container {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-	}
 
 	.spotify-btn:hover {
 		background-color: #1db954;
 		border-color: #1db954;
 	}
 
-	.apple-btn:hover {
-		background-color: #fc3c44;
-		border-color: #fc3c44;
-	}
-
 	@media only screen and (max-width: 600px) {
 		.spotify-btn {
 			background-color: #1db954;
 			border-color: #1db954;
-		}
-		.apple-btn {
-			background-color: #fc3c44;
-			border-color: #fc3c44;
 		}
 	}
 </style>
