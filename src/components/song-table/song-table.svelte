@@ -91,7 +91,7 @@
 
 	@media only screen and (max-width: 600px) {
 		table {
-			max-width: 30em;
+			max-width: 28em;
 		}
 	}
 </style>
