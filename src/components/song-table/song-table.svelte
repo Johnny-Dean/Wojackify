@@ -81,12 +81,17 @@
 	table {
 		display: block;
 		max-height: 15em;
-		max-width: 30em;
 		overflow: auto;
 		border-spacing: 1em;
 		border-collapse: separate;
 	}
 	thead {
 		padding: 0.5em 1em;
+	}
+
+	@media only screen and (max-width: 600px) {
+		table {
+			max-width: 30em;
+		}
 	}
 </style>
