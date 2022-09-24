@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { UserObjectPublic, TrackObjectFull, ArtistObjectFull } from 'spotify-api';
+	import type { UserObjectPublic, TrackObjectFull } from 'spotify-api';
 	import { onMount } from 'svelte';
 	import wojackImage from '../../img/wojack.jpg';
 	import SongTable from '/src/components/song-table/song-table.svelte';
@@ -15,12 +15,18 @@
 		filterSongOut,
 		filterGenreOut
 	} from './canvasUtil.ts';
+	import {
+		user as storeUser,
+		songs as storeSongs,
+		artists as storeArtists,
+		timePeriod
+	} from '../../stores';
 
 	let downloadableImage: HTMLImageElement;
-
-	export let user: UserObjectPublic;
-	export let topSongs: Array<TrackObjectFull>;
-	export let topArtists: Array<ArtistObjectFull>;
+	const user: UserObjectPublic = $storeUser;
+	// Find a way to fix this TS error,  maybe enum to index?
+	let topSongs = $storeSongs[$timePeriod];
+	let topArtists = $storeArtists[$timePeriod];
 	export let topArtistTopTrack: TrackObjectFull;
 	topSongs = filterSongOut(topArtistTopTrack[1], topSongs);
 	topArtists = filterArtistOut(topArtistTopTrack[1], topArtists);

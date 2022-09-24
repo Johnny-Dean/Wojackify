@@ -1,7 +1,8 @@
 import { writable } from 'svelte/store';
-import type { TrackObjectFull, ArtistObjectFull } from 'spotify-api';
+import type { TrackObjectFull, ArtistObjectFull, UserObjectPublic } from 'spotify-api';
+
 function createSongs() {
-	const { subscribe, update } = writable({});
+	const { subscribe, update } = writable({ short_term: [] });
 	return {
 		subscribe,
 		set: (time_range: string, new_songs: Array<TrackObjectFull>) => {
@@ -13,7 +14,7 @@ function createSongs() {
 }
 
 function createArtists() {
-	const { subscribe, update } = writable({});
+	const { subscribe, update } = writable({ short_term: [] });
 	return {
 		subscribe,
 		set: (time_range: string, artists: Array<ArtistObjectFull>) => {
@@ -33,6 +34,25 @@ function createAccessToken() {
 	};
 }
 
+function createUser() {
+	const { subscribe, set } = writable();
+
+	return {
+		subscribe,
+		set: (user: UserObjectPublic) => set(user)
+	};
+}
+
+function createTimePeriod() {
+	const { subscribe, update } = writable('short_term');
+
+	return {
+		subscribe,
+		set: (timePeriod: string) => update(() => timePeriod)
+	};
+}
+export const timePeriod = createTimePeriod();
+export const user = createUser();
 export const accessToken = createAccessToken();
 export const artists = createArtists();
 export const songs = createSongs();
