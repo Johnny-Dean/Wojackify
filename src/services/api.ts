@@ -1,8 +1,12 @@
-export const getUserProfile = async (accessToken: string) => {
+// Is this bad practice? How else could I use these with a store
+import { accessToken } from '/src/stores.ts';
+import { get } from 'svelte/store';
+export const getUserProfile = async () => {
 	try {
+		const access_token = get(accessToken);
 		const response = await fetch('https://api.spotify.com/v1/me', {
 			headers: {
-				Authorization: `Bearer ${accessToken}`
+				Authorization: `Bearer ${access_token}`
 			}
 		});
 		return response.json();
@@ -11,13 +15,14 @@ export const getUserProfile = async (accessToken: string) => {
 	}
 };
 
-export const getUserTop = async (type: string, timeRange: string, accessToken: string) => {
+export const getUserTop = async (type: string, timeRange: string) => {
 	try {
+		const access_token = get(accessToken);
 		const response = await fetch(
 			`https://api.spotify.com/v1/me/top/${type}/?time_range=${timeRange}`,
 			{
 				headers: {
-					Authorization: `Bearer ${accessToken}`
+					Authorization: `Bearer ${access_token}`
 				}
 			}
 		);
@@ -27,13 +32,14 @@ export const getUserTop = async (type: string, timeRange: string, accessToken: s
 	}
 };
 
-export const getArtistTopTracks = async (artistID: string, accessToken: string) => {
+export const getArtistTopTracks = async (artistID: string) => {
 	try {
+		const access_token = get(accessToken);
 		const response = await fetch(
 			`https://api.spotify.com/v1/artists/${artistID}/top-tracks?country=US`,
 			{
 				headers: {
-					Authorization: `Bearer ${accessToken}`
+					Authorization: `Bearer ${access_token}`
 				}
 			}
 		);

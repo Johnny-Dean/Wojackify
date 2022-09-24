@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { UserObjectPublic, TrackObjectFull, ArtistObjectFull } from 'spotify-api';
+	import type { UserObjectPublic, TrackObjectFull } from 'spotify-api';
 	import { onMount } from 'svelte';
 	import wojackImage from '../../img/wojack.jpg';
 	import SongTable from '/src/components/song-table/song-table.svelte';
@@ -15,12 +15,17 @@
 		filterSongOut,
 		filterGenreOut
 	} from './canvasUtil.ts';
+	import {
+		user as storeUser,
+		songs as storeSongs,
+		artists as storeArtists,
+		timePeriod
+	} from '../../stores';
 
 	let downloadableImage: HTMLImageElement;
-
-	export let user: UserObjectPublic;
-	export let topSongs: Array<TrackObjectFull>;
-	export let topArtists: Array<ArtistObjectFull>;
+	const user: UserObjectPublic = $storeUser;
+	let topSongs = $storeSongs[$timePeriod as keyof typeof $storeSongs];
+	let topArtists = $storeArtists[$timePeriod as keyof typeof $storeArtists];
 	export let topArtistTopTrack: TrackObjectFull;
 	topSongs = filterSongOut(topArtistTopTrack[1], topSongs);
 	topArtists = filterArtistOut(topArtistTopTrack[1], topArtists);
@@ -93,7 +98,6 @@
 			context!.font = 'normal 15px Tahoma ';
 			context!.fillStyle = 'blue';
 			context?.fillText(`generated with wojackify.me`, 250, 665);
-
 			downloadableImage.src = canvas.toDataURL();
 		};
 	};
@@ -101,7 +105,7 @@
 	onMount(() => drawImage());
 </script>
 
-<div class="flex flex-col content-center items-center gap-5">
+<div class="flex flex-col content-center items-center gap-3">
 	<img
 		bind:this={downloadableImage}
 		alt="Generated 'I Wish I Was At Home / They Don't Know' meme"

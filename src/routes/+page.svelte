@@ -1,6 +1,7 @@
 <script>
 	import Nav from '/src/components/nav/nav.svelte';
 	import { requestSpotifyAuth } from '/src/services/auth.ts';
+	import Refresh from '/src/components/refresh/refresh.svelte';
 </script>
 
 <svelte:head>
@@ -14,11 +15,8 @@
 		<div class="card-body">
 			<h1 class="card-title  justify-center">Welcome to Wojackify!</h1>
 			<div class="card-actions flex flex-col content-center mt-5">
-				<button
-					on:click={requestSpotifyAuth}
-					data-goatcounter-click="spotify-btn"
-					data-goatcounter-title="spotify-auth"
-					class="btn btn-lg w-48 spotify-btn text-white">Spotify</button
+				<button on:click={requestSpotifyAuth} class="btn btn-lg w-48 spotify-btn text-white"
+					>Spotify</button
 				>
 			</div>
 		</div>
