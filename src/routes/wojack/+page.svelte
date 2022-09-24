@@ -14,20 +14,23 @@
 		UsersTopArtistsResponse,
 		UsersTopTracksResponse
 	} from 'spotify-api';
-
+	import { songs, artists, accessToken } from '../../stores';
 	let user: UserObjectPublic;
 	let topSongs: UsersTopTracksResponse;
 	let topArtists: UsersTopArtistsResponse;
 	let topArtistTopTrack: TrackObjectFull;
 
 	async function fetchData(timeRange = 'short_term') {
-		const accessToken = GetAccessToken(); // Don't need to store this in a cookie or localStorage because it's such a quick process. Safer to just store in memory.
-		user = await getUserProfile(accessToken);
-		topSongs = await getUserTop('tracks', timeRange, accessToken);
+		accessToken.set(GetAccessToken());
+		user = await getUserProfile($accessToken);
+		topSongs = await getUserTop('tracks', timeRange);
 		topSongs = topSongs.items;
-		topArtists = await getUserTop('artists', timeRange, accessToken);
+		songs.set(timeRange, topSongs);
+		topArtists = await getUserTop('artists', timeRange);
 		topArtists = topArtists.items;
-		topArtistTopTrack = await getTopArtistMostPopularSong(topArtists, accessToken);
+		artists.set(timeRange, topArtists);
+		console.log($songs, $artists);
+		topArtistTopTrack = await getTopArtistMostPopularSong(topArtists);
 	}
 
 	function handleTimeRangeChange(event: any) {
@@ -55,7 +58,6 @@
 
 <svelte:head>
 	<title>Wojackify - Generated</title>
-	<meta name="spotify" content="app-id=324684580" />
 	<html lang="en" />
 </svelte:head>
 
