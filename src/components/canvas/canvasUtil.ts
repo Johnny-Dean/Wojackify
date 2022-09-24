@@ -11,7 +11,7 @@ export const getInsult = (): string => {
 		"he thinks he's anthony fantano",
 		"i hate him so much i'm shaking",
 		'why does he smell like that',
-		'all his taste comes from TikTok'
+		'all his taste comes from tiktok'
 	];
 	const randomRange = randomNumberGenerator(insults.length);
 	return insults[randomRange];
