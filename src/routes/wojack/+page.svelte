@@ -27,8 +27,13 @@
 	async function handleTimeRangeChange(event: any) {
 		const newTimeRange = event.detail.newTimeRange;
 		timePeriod.set(newTimeRange);
-		if ($songs[newTimeRange] && $artists[newTimeRange]) {
-			topArtistTopTrack = await getTopArtistMostPopularSong($artists[newTimeRange]);
+		if (
+			$songs[newTimeRange as keyof typeof $songs] &&
+			$artists[newTimeRange as keyof typeof $artists]
+		) {
+			topArtistTopTrack = await getTopArtistMostPopularSong(
+				$artists[newTimeRange as keyof typeof $artists]
+			);
 		} else {
 			fetchData(event.detail.newTimeRange);
 		}

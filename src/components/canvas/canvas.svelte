@@ -24,9 +24,8 @@
 
 	let downloadableImage: HTMLImageElement;
 	const user: UserObjectPublic = $storeUser;
-	// Find a way to fix this TS error,  maybe enum to index?
-	let topSongs = $storeSongs[$timePeriod];
-	let topArtists = $storeArtists[$timePeriod];
+	let topSongs = $storeSongs[$timePeriod as keyof typeof $storeSongs];
+	let topArtists = $storeArtists[$timePeriod as keyof typeof $storeArtists];
 	export let topArtistTopTrack: TrackObjectFull;
 	topSongs = filterSongOut(topArtistTopTrack[1], topSongs);
 	topArtists = filterArtistOut(topArtistTopTrack[1], topArtists);
@@ -99,7 +98,6 @@
 			context!.font = 'normal 15px Tahoma ';
 			context!.fillStyle = 'blue';
 			context?.fillText(`generated with wojackify.me`, 250, 665);
-
 			downloadableImage.src = canvas.toDataURL();
 		};
 	};
