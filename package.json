@@ -35,6 +35,7 @@
 	"dependencies": {
 		"@types/spotify-api": "^0.0.17",
 		"buffer": "^6.0.3",
-		"daisyui": "^2.24.0"
+		"daisyui": "^2.24.0",
+		"svelte-icons": "^2.1.0"
 	}
 }

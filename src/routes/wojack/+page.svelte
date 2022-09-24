@@ -9,6 +9,7 @@
 	import TimeRange from '/src/components/time-range/timeRange.svelte';
 	import type { TrackObjectFull } from 'spotify-api';
 	import { songs, artists, accessToken, user as storeUser, timePeriod } from '../../stores';
+	import Refresh from '/src/components/refresh/refresh.svelte';
 	let topArtistTopTrack: TrackObjectFull;
 
 	async function fetchData(timeRange = 'short_term') {
@@ -47,7 +48,17 @@
 <Nav />
 <div class="flex flex-col content-center mt-2">
 	<div class="flex flex-col content-center items-center gap-1">
-		<TimeRange on:timeRangeChange={handleTimeRangeChange} />
+		<div class="flex flex-row items-center gap-3 bg-base-300 p-1 px-4 mb-2">
+			<TimeRange on:timeRangeChange={handleTimeRangeChange} />
+			<div class="icon">
+				<Refresh
+					on:refreshClicked={async () => {
+						topArtistTopTrack = await getTopArtistMostPopularSong($artists[$timePeriod]);
+					}}
+				/>
+			</div>
+		</div>
+
 		{#if topArtistTopTrack}
 			{#key topArtistTopTrack}
 				<Canvas {topArtistTopTrack} />
@@ -64,6 +75,11 @@
 </svelte:head>
 
 <style>
+	.icon {
+		width: 30px;
+		height: 30px;
+		color: white;
+	}
 	@media screen and (max-width: 600px) {
 		img {
 			height: 375px;

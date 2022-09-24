@@ -13,7 +13,7 @@
 	}
 </script>
 
-<table class="bg-slate-700">
+<table class="bg-base-300">
 	<thead>
 		<tr>
 			<td>Song</td>
@@ -80,7 +80,7 @@
 <style>
 	table {
 		display: block;
-		max-height: 15em;
+		max-height: 20em;
 		overflow: auto;
 		border-spacing: 1em;
 		border-collapse: separate;

@@ -105,7 +105,7 @@
 	onMount(() => drawImage());
 </script>
 
-<div class="flex flex-col content-center items-center gap-5">
+<div class="flex flex-col content-center items-center gap-3">
 	<img
 		bind:this={downloadableImage}
 		alt="Generated 'I Wish I Was At Home / They Don't Know' meme"
