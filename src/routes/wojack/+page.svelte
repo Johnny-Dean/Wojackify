@@ -58,7 +58,6 @@
 				/>
 			</div>
 		</div>
-
 		{#if topArtistTopTrack}
 			{#key topArtistTopTrack}
 				<Canvas {topArtistTopTrack} />

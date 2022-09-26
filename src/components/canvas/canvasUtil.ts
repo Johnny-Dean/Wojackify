@@ -10,11 +10,22 @@ export const getInsult = (): string => {
 		'why is he standing like that',
 		"he thinks he's anthony fantano",
 		"i hate him so much i'm shaking",
-		'why does he smell like that',
-		'all his taste comes from tiktok'
+		'why does he smell like that'
 	];
-	const randomRange = randomNumberGenerator(insults.length);
-	return insults[randomRange];
+	const randomIndex = randomNumberGenerator(insults.length);
+	return insults[randomIndex];
+};
+
+export const getComplaint = (): string => {
+	const complaints = [
+		'my feet hurt ',
+		'im hungry',
+		'oh god why am i better than everyone else',
+		'need to post a song on my story',
+		'im so lonely'
+	];
+	const randomIndex = randomNumberGenerator(complaints.length);
+	return complaints[randomIndex];
 };
 
 export const getRandomSong = (topSongs: Array<TrackObjectFull>): TrackObjectFull => {

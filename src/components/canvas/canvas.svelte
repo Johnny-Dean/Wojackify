@@ -13,7 +13,8 @@
 		getRandomGenre,
 		filterArtistOut,
 		filterSongOut,
-		filterGenreOut
+		filterGenreOut,
+		getComplaint
 	} from './canvasUtil.ts';
 	import {
 		user as storeUser,
@@ -53,7 +54,6 @@
 		let canvas: HTMLCanvasElement = document.createElement('canvas');
 		canvas.height = 673;
 		canvas.width = 671;
-
 		let context = canvas.getContext('2d');
 		const image = new Image();
 		image.src = wojackImage;
@@ -74,7 +74,7 @@
 			context?.fillText(`they're unironically playing "${mostPopularSong.name}"`, 205, 140);
 			context?.fillText(`who's djing?`, 215, 175);
 			context?.fillText(`haven't heard any ${randomGenre}`, 213, 195);
-			context?.fillText('my feet hurt', 210, 215);
+			context?.fillText(getComplaint(), 210, 213.5); // GenerateComplaint()
 			context?.fillText(`that guy told me he listens to`, 210, 232);
 			context?.fillText(`${topArtistTopTrack[0].name}`, 210, 248);
 
