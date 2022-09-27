@@ -21,7 +21,7 @@ export const getComplaint = (): string => {
 		'my feet hurt ',
 		'im hungry',
 		'oh god why am i better than everyone else',
-		'need to post a song on my story',
+		'i need to post a song on my story',
 		'im so lonely'
 	];
 	const randomIndex = randomNumberGenerator(complaints.length);
