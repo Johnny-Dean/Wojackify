@@ -71,8 +71,7 @@ export const getTopArtistMostPopularSong = async (
 	accessToken: string
 ): Promise<[string, string]> => {
 	const artist = getRandomArtist(topArtists);
-	let topTracks = await getArtistTopTracks(parseId(artist.uri), accessToken);
-	topTracks = topTracks.tracks;
+	const topTracks = await getArtistTopTracks(parseId(artist.uri), accessToken);
 	const topTrack = getMostPopularSong(topTracks);
 	return [artist, topTrack];
 };

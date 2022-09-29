@@ -26,7 +26,7 @@ export const getUserTop = async (type: string, timeRange: string) => {
 				}
 			}
 		);
-		return response.json();
+		return (await response.json()).items;
 	} catch (error) {
 		console.error(error);
 	}
@@ -43,7 +43,7 @@ export const getArtistTopTracks = async (artistID: string) => {
 				}
 			}
 		);
-		return response.json();
+		return (await response.json()).tracks;
 	} catch (error) {
 		console.error(error);
 	}

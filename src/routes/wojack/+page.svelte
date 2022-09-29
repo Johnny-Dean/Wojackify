@@ -16,9 +16,7 @@
 		accessToken.set(GetAccessToken());
 		let user = await getUserProfile();
 		let topSongs = await getUserTop('tracks', timeRange);
-		topSongs = topSongs.items;
 		let topArtists = await getUserTop('artists', timeRange);
-		topArtists = topArtists.items;
 		storeUser.set(user);
 		songs.set(timeRange, topSongs);
 		artists.set(timeRange, topArtists);
